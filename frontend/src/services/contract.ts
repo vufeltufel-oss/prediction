@@ -168,7 +168,7 @@ export interface IPredictionMarketContract extends BaseContractProperties {
 export function getPredictionMarketContract(
     provider: any,
     network: any,
-    senderPublicKey?: string,
+    senderAddressValue?: string,
 ): IPredictionMarketContract {
     if (!CONTRACT_ADDRESS) {
         throw new Error(
@@ -176,11 +176,11 @@ export function getPredictionMarketContract(
         );
     }
 
-    // Convert public key hex string to Address object if provided
+    // Convert wallet address string to Address object if provided
     let senderAddress: Address | undefined;
-    if (senderPublicKey) {
+    if (senderAddressValue) {
         try {
-            senderAddress = Address.fromString(senderPublicKey);
+            senderAddress = Address.fromString(senderAddressValue);
         } catch {
             // If conversion fails, proceed without sender
             senderAddress = undefined;

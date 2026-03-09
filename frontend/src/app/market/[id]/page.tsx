@@ -18,7 +18,7 @@ export default function MarketDetail({ params }: { params: Promise<{ id: string 
     const [isTrading, setIsTrading] = useState(false);
     const [txResult, setTxResult] = useState<string | null>(null);
 
-    const { walletAddress, publicKey, provider, signer, network, connect } = useWallet();
+    const { walletAddress, provider, signer, network, connect } = useWallet();
 
     if (!market) return <div className="py-20 text-center text-zinc-500">Market not found</div>;
 
@@ -59,7 +59,7 @@ export default function MarketDetail({ params }: { params: Promise<{ id: string 
 
         try {
             // Get the contract instance
-            const contract = getPredictionMarketContract(provider, network, publicKey || undefined);
+            const contract = getPredictionMarketContract(provider, network, walletAddress || undefined);
 
             // Convert BTC amount to satoshis (bigint)
             const satoshis = BigInt(Math.floor(parseFloat(amount) * 1e8));

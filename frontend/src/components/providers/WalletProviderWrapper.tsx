@@ -94,6 +94,10 @@ export default function WalletProviderWrapper({ children }: { children: React.Re
                     const bal = await wallet.getBalance();
                     setBalance(bal);
                     try {
+                        const btcNetwork = await wallet.getBitcoinNetwork();
+                        setNetwork(btcNetwork);
+                    } catch { /* ignore */ }
+                    try {
                         const s = await wallet.createSigner();
                         setSigner(s);
                     } catch { /* ignore */ }
@@ -134,8 +138,8 @@ export default function WalletProviderWrapper({ children }: { children: React.Re
                 setBalance(bal);
 
                 try {
-                    const chain = await wallet.getWalletProvider()?.getChain();
-                    setNetwork(chain);
+                    const btcNetwork = await wallet.getBitcoinNetwork();
+                    setNetwork(btcNetwork);
                 } catch { /* ignore */ }
 
                 try {

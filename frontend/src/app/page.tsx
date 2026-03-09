@@ -12,7 +12,7 @@ import {
 } from '@/services/contract';
 
 export default function Home() {
-    const { walletAddress, publicKey, provider, signer, network, connect } = useWallet();
+    const { walletAddress, provider, signer, network, connect } = useWallet();
     const [isCreating, setIsCreating] = useState(false);
     const [createStatus, setCreateStatus] = useState<string | null>(null);
 
@@ -30,7 +30,7 @@ export default function Home() {
         setCreateStatus('Initializing...');
 
         try {
-            const contract = getPredictionMarketContract(provider, network, publicKey || undefined);
+            const contract = getPredictionMarketContract(provider, network, walletAddress || undefined);
 
             for (let i = 0; i < SAMPLE_MARKETS.length; i++) {
                 const market = SAMPLE_MARKETS[i];
